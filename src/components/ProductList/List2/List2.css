@@ -1,0 +1,179 @@
+/* Products Grid */
+.productsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px; /* spacing between items */
+}
+
+/* Sticky Sidebar */
+.sticky-sidebar {
+  position: sticky;
+  top: 50px;      
+  z-index: 20;
+  height: fit-content;
+}
+
+/* Prevent parent overflow issues */
+.homeProducts,
+.container,
+.row,
+.col-md-3 {
+  overflow: visible !important;
+}
+
+/* Product Card */
+.productCard {
+  flex: 0 0 calc(25% - 20px); /* 4 items per row */
+  background: #fff;
+  border: 1px solid #dbe7ea !important; 
+  border-radius: 7px !important;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+.productCard:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 30px rgba(0, 105, 112, 0.18);
+  border-color: var(--teal-mid) !important;
+}
+
+.productCard:hover .card-body {
+  background: var(--btn-gradient);
+  color: #fff;
+}
+
+.productCard:hover .card-body h6,
+.productCard:hover .card-body p,
+.productCard:hover .card-body .stockStatus,
+.productCard:hover .card-body .oldPrice,
+.productCard:hover .card-body .newPrice {
+  color: #fff;
+}
+
+.productCard:hover .card-body .oldPrice {
+  opacity: 0.7;
+}
+
+/* Image Wrapper */
+.imgWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.imgWrapper img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Discount Badge */
+.discountBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--teal-light);
+  color: #fff;
+  font-size: 12px !important;
+  font-weight: 500;
+  padding: 7px 8px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Image Icons on hover */
+.imageIcons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.productCard:hover .imageIcons {
+  opacity: 1;
+}
+
+.iconBox {
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #626161;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+.iconBox:hover {
+  background: #ca2246;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.iconBox.active {
+  background: #f74b81;
+  color: #fff;
+}
+
+/* Card Body */
+.card-body {
+  text-align: left;
+  padding: 10px 15px;
+  background-color: aliceblue;
+}
+
+/* Stock Status */
+.stockStatus {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.inStock { color: #0da74d; }
+.outStock { color: #e74c3c; }
+
+/* Rating */
+.rating {
+  display: flex;
+  gap: 2px;
+}
+
+/* Price */
+.priceBox {
+  margin-top: 5px;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 14px;
+}
+
+.newPrice {
+  color: #e63946;
+  font-weight: 600;
+  font-size: 16px;
+}
+.bannerSec{
+  gap:10px;
+}
+
+/* Responsive */
+@media(max-width: 992px) {
+  .productCard { flex: 0 0 calc(33.333% - 20px); } /* 3 items per row */
+}
+
+@media(max-width: 768px) {
+  .productCard { flex: 0 0 calc(50% - 20px); } /* 2 items per row */
+}
+
+@media(max-width: 576px) {
+  .productCard { flex: 0 0 100%; } /* 1 item per row */
+}

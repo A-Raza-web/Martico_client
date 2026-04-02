@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --teal-dark: #002f3d;
+  --teal-mid: #006970;
+  --teal-light: #2DE1C2;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, var(--teal-mid), var(--teal-dark));
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
+
+.loader-container {
+  text-align: center;
+  width: 320px;
+}
+
+.logo {
+  font-size: 40px;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  animation: glow 2s infinite alternate;
+}
+
+.logo span {
+  color: var(--teal-light);
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px var(--teal-light); }
+  to { text-shadow: 0 0 25px var(--teal-mid); }
+}
+
+.loading-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(270deg, var(--teal-light), var(--teal-mid), var(--teal-light));
+  background-size: 400% 400%;
+  animation: gradientMove 2s infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.percent {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--teal-light);
+}
+
+.loading-text {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}

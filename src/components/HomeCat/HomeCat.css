@@ -1,0 +1,114 @@
+.homeCat {
+    padding: 35px 0;
+}
+
+.hd {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+
+
+.homeCat .items {
+    padding: 30px;
+    width: 135%;
+    height: auto;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(18, 24, 40, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.homeCat .items img {
+    width: 80%;
+    margin-left: 5px;
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.homeCat .items h6 {
+    transition: transform 0.35s ease, letter-spacing 0.35s ease, color 0.35s ease;
+}
+
+.homeCat .items::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(45, 225, 194, 0.35), rgba(0, 105, 112, 0.15) 55%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+}
+
+.homeCat .items:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 18px 35px rgba(18, 24, 40, 0.16);
+}
+
+.homeCat .items:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.homeCat .items:hover img {
+    transform: translateY(-6px) scale(1.05);
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.18));
+}
+
+.homeCat .items:hover h6 {
+    transform: translateY(2px);
+    letter-spacing: 0.4px;
+}
+
+.homeCat a:focus-visible .items {
+    outline: 2px solid #2DE1C2;
+    outline-offset: 4px;
+}
+
+/* Arrows */
+.arrow-prev,
+.arrow-next {
+    position: absolute;
+    top: -50%;
+    z-index: 999;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.arrow-prev:hover,
+.arrow-next:hover {
+    background: linear-gradient(90deg, #006970, #2DE1C2);
+    color: #fff;
+}
+
+.arrow-prev, .arrow-next{
+    top:-22% !important;
+}
+.arrow-prev {
+    right: 50px;
+}
+
+.arrow-next {
+    right: 10px;
+}
+.swiper-wrapper{
+    margin-top: 14px !important;
+    margin-left: 10px;
+}

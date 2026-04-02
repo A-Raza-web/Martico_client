@@ -1,0 +1,113 @@
+/* Modal Close Button */
+.modalCloseBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+.modalCloseBtn:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+  border-color: #999;
+}
+
+/* Amazon Modal Layout */
+.amazonModal {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+}
+
+/* LEFT – IMAGE + SLIDER */
+.amazonLeft {
+  flex: 1;
+}
+.amazonMainImgWrapper {
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f6f6f6;
+  cursor: zoom-in;
+  position: relative;
+}
+.amazonMainImgZoom {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease, transform-origin 0.3s ease;
+}
+.amazonThumbWrapper { margin-top: 15px; }
+.amazonThumb { width: 100%; height: 70px; padding:5px; border-radius:8px; object-fit:contain; cursor:pointer; border: 2px solid transparent; transition:0.3s; }
+.amazonActiveThumb { border-color:#ffa41c; }
+
+/* CENTER – DETAILS */
+.amazonCenter { 
+  flex: 1.4; 
+  margin: 18px;
+  margin-top: 60px;
+  margin-right: 70px;
+}
+.amazonTitle { font-size: 23px; font-weight: 700; margin-bottom: 20px;}
+.brandTag { font-size: 14px; color: #777; font-weight: 500; margin-left: 8px; }
+.amazonRatings { font-size: 16px; margin: 20px 0; color: #ffa41c; display:flex; align-items:center; }
+.starIcon { color: #ffa41c; font-size:18px; margin-right:2px; }
+.starIcon.outline { color: #ccc; }
+.amazonDesc { font-size: 15px; color: #444; margin: 18px 0px;margin-right: 50px;  }
+.amazonBullets { padding-left: 20px; margin: 15px 0; }
+.amazonBullets li { margin-bottom: 6px; font-size: 15px; color: #333; }
+.amazonPriceBox { display:flex; align-items:center; gap:12px; margin:12px 0; }
+.amazonPrice { font-size:28px; color:#b12704; font-weight:700; }
+.amazonOldPrice { text-decoration: line-through; color:#777; }
+.qtyInline { margin: 22px 0 14px; }
+.amazonStock.inS { color:#067d62; font-weight:bold; margin: 30px 0px;}
+.amazonStock.outS { color:#d32f2f; font-weight:bold; }
+
+/* RIGHT – BUY BOX */
+.amazonRightBox {
+  margin-top: 56px !important;
+  width: 250px;
+  border: 1px solid #ddd;
+  padding: 18px;
+  border-radius: 12px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.boxPrice { font-size:26px; font-weight:bold; color:#b12704; }
+.deliveryText { font-size:15px; color:#444; }
+.buyNowBtn { border-radius:25px !important; background:var(--teal-dark) !important; color:#fff !important; }
+.buyNowBtn:hover{background: var(--btn-gradient) !important;}
+.addToCartBtn { border-radius:25px !important; background-color:#888 !important; color:#fff !important; }
+.addToCartBtn:hover { background-color:#555 !important; }
+.amazonWishlistBtn { border-radius:25px !important;  color:var(--teal-dark)!important; border-color: var(--teal-dark) !important;}
+.amazonWishlistBtn.saved {
+  background: #f74b81 !important;
+  color: #fff !important;
+  border-color: #f74b81 !important;
+}
+.secureText { font-size:14px; color:#666; display:flex; align-items:center; gap:5px; }
+
+/* closeBtn */
+.closeBtnWrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.closeBtn {
+  border-color: #006970 !important;
+  color: #006970 !important;
+  border-radius: 20px   !important;
+  padding: 6px 20px !important;
+  text-transform: none !important;
+}

@@ -1,0 +1,140 @@
+footer {
+    width: 100%;
+    height: 500px;
+    margin: auto;
+    padding: 35px 0px;
+    background-color: #fff;
+}
+footer .topInfo {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 20px;
+}
+footer .topInfo .col{
+    padding: 15px 15px;
+    padding-left: 20px;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    margin-left: 10px;
+}
+footer .topInfo .col:last-child{
+    border-right: 0px;
+}
+footer .topInfo .col svg{
+    font-size: 24px;
+}
+footer .topInfo .col span{
+    font-size: 15px;
+    font-weight: 600;
+}
+footer .linksWrap h5{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #002f3d;
+}
+footer .linksWrap ul li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+footer .linksWrap ul li a{
+    color: #4e556e;
+    font-size: 13px;
+}
+footer .linksWrap ul li a:hover{
+    text-decoration: none;
+    color: #000;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li a {
+    text-decoration: none;
+    color: #004d40; /* dark teal */
+    font-size: 15px;
+}
+
+.category-list li a:hover {
+    color: #00997b;  /* lighter teal hover */
+}
+
+/* Full width neon footer */
+.copyRight {
+  width: 100%;
+  background: #002f3d;
+  color: #2DE1C2;
+  text-align: center;
+  padding: 18px 0;
+  border-top: 2px solid #2DE1C2;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 25px #006970;
+}
+
+/* Animated neon border strip */
+.copyRight::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #006970, #2DE1C2, #006970);
+  background-size: 200%;
+  animation: neonFlow 4s linear infinite;
+  box-shadow: 
+    0 0 15px #2DE1C2,
+    0 0 35px #2DE1C2;
+}
+
+/* Moving glowing border */
+@keyframes neonFlow {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* Text glow */
+.copyRight p {
+  margin: 0;
+  font-size: 17px;
+  color: #2DE1C2;
+  text-shadow: 
+    0 0 6px #2DE1C2,
+    0 0 15px #2DE1C2;
+}
+
+/* Icons */
+.copyRight ul {
+  margin-top: 12px;
+  padding: 0;
+}
+
+.copyRight ul li {
+  display: inline-block;
+  margin: 0 14px;
+}
+
+/* Neon glowing icons */
+.copyRight ul li a {
+  font-size: 26px;
+  color: #2DE1C2;
+  transition: 0.3s ease;
+  text-shadow: 
+    0 0 6px #2DE1C2,
+    0 0 18px #2DE1C2;
+}
+
+/* Hover = stronger glow + movement */
+.copyRight ul li a:hover {
+  color: #2DE1C2;
+  transform: scale(1.3) translateY(-3px);
+  text-shadow: 
+    0 0 12px #2DE1C2,
+    0 0 25px #2DE1C2,
+    0 0 45px #2DE1C2;
+}

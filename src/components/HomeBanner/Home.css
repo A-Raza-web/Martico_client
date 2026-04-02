@@ -1,0 +1,75 @@
+.container-custom {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.homeBannerWrapper {
+  position: relative;
+  overflow: inherit;
+  /* Allow side banners to be visible */
+}
+
+/* Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-size: 20px;
+  color: #2DE1C2;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 50%;
+  background: rgba(0, 47, 61, 0.6);
+  backdrop-filter: blur(4px);
+  transition: 0.3s ease;
+  text-shadow: 0 0 10px #2DE1C2, 0 0 20px #2DE1C2;
+}
+
+.slider-arrow:hover {
+  background: rgba(0, 105, 112, 0.7);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 0 15px #2DE1C2, 0 0 30px #2DE1C2;
+}
+
+/* Positioning */
+.slider-arrow.prev {
+  left: 25px;
+}
+
+.slider-arrow.next {
+  right: 25px;
+}
+
+.slick-slide {
+  transition: all 0.5s ease;
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.slick-slide.slick-active.slick-center {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slick-list {
+  overflow: visible !important;
+  /* Force visibility for side banners */
+}
+
+.items.height {
+  height: 360px !important;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.items.height img {
+  height: 360px !important;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,237 @@
+.sideBar{
+    width: 20%;
+    flex: 0 0 20%;
+}
+.sideBar .filterBox{
+    margin-bottom: 35px;
+}
+.sideBar .filterBox h6{
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.sideBar .filterBox .scroll ul li{
+    list-style: none;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+}
+.sideBar .filterBox .scroll{
+    padding-left: 0px;
+    max-height: 280px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.catItem{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  color: #0f172a;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all .2s ease;
+}
+.catItem:hover{
+  color:#0f172a !important;
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+.catItem.active{
+  background: rgba(15,118,110,.08);
+  border-color: rgba(15,118,110,.25);
+}
+.catAvatar{
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  font-weight: 700;
+  font-size: 12px;
+}
+.catAvatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.catName{
+  font-size: 14px;
+  font-weight: 600;
+}
+.sideBar .filterBox .scroll::-webkit-scrollbar{
+    height: 5px;
+    width: 5px;
+}
+
+.filterTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.priceSlider {
+  width: 100%;
+  cursor: pointer;
+}
+
+.priceValues {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-top: 5px;
+  color: #555;
+}
+
+.filterBtn {
+  margin-top: 14px !important;
+  width: 100%;
+  padding: 10px 0 !important;
+
+  border-radius: 30px !important;
+  background: var(--btn-gradient) !important;
+  color: #ffffff !important;
+
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+
+  box-shadow: 0 8px 18px rgba(45, 225, 194, 0.35);
+  transition: all 0.35s ease;
+}
+
+/* Hover Effect */
+.filterBtn:hover {
+  background: var(--btn-gradient) !important;
+  box-shadow: 0 12px 28px rgba(0, 105, 112, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Click Effect */
+.filterBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0, 105, 112, 0.35);
+}
+
+/* Disabled State (Optional) */
+.filterBtn:disabled {
+  background: #c7ece6 !important;
+  color: #888 !important;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.Apply_fil{
+    font-size: 14px;
+    font-weight: 600;
+}
+.priceSlider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  /* background ab React ke style prop se handle ho raha hai */
+}
+
+/* Chrome/Safari track ko transparent rakhein taake background dikhe */
+.priceSlider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: transparent; 
+}
+
+/* Handle (Goli) ki styling */
+.priceSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #2DE1C2;
+  cursor: pointer;
+  margin-top: -6px; /* Track ke center mein laane ke liye */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Firefox support */
+.priceSlider::-moz-range-progress {
+  background-color: #2DE1C2;
+  height: 6px;
+  border-radius: 5px;
+}
+.priceSlider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 6px rgba(45, 225, 194, 0.25);
+}
+.sideBarBanner{
+  margin-bottom: 55px !important;
+}
+
+/* Brand Filter Styles */
+.brandList {
+  padding-left: 0;
+  margin: 0;
+}
+
+.brandList li {
+  list-style: none;
+  margin-bottom: 4px;
+}
+
+.brandItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+  text-align: left;
+}
+
+.brandItem:hover {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.brandItem.selected {
+  background: rgba(15, 118, 110, 0.08);
+  border-color: rgba(15, 118, 110, 0.25);
+  color: #0f736c;
+  font-weight: 600;
+}
+
+.brandItem.selected:hover {
+  background: rgba(15, 118, 110, 0.12);
+  border-color: rgba(15, 118, 110, 0.35);
+}
+
+.brandName {
+  flex: 1;
+}
+
+.brandCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2DE1C2;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+}

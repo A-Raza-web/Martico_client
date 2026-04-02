@@ -1,0 +1,43 @@
+/* Quantity controls */
+
+.qty-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 14px;
+}
+
+.qty-btn {
+  min-width: 36px !important;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  background: #f3f4f6;
+  color: #111827;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.qty-btn:hover {
+  background: #111827;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.qty-value {
+  min-width: 28px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}

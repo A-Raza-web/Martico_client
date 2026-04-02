@@ -1,0 +1,142 @@
+/* 🌍 Country Dropdown Button */
+.countrydrop {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  color: #333 !important;
+  transition: all 0.3s ease;
+}
+
+
+
+.countrydrop .info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 7px;
+}
+
+.countrydrop .label {
+  font-size: 12px;
+  color: #777;
+  padding: 2px;
+}
+
+.countrydrop .name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  padding: 2px;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #222;
+  max-width: 130px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  display: inline-block; 
+  vertical-align: middle;
+}
+
+.countrydrop .icon {
+  margin-left: 8px;
+  color: #2de1c2;
+}
+
+/* 📍 Dialog Styles */
+.locationDialogPaper {
+  border-radius: 16px !important;
+  padding: 15px 25px !important;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dialogTitle {
+  text-align: center;
+  font-weight: 600 !important;
+  color: #333 !important;
+}
+
+.dialogDescription {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* 🔍 Search Input */
+.headerSearch {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 5px 10px;
+  background: #f9f9f9;
+  margin-bottom: 15px;
+}
+
+.headerSearch input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 8px 10px;
+  font-size: 15px;
+}
+
+.searchBtn {
+  background-color: #2de1c2 !important;
+  color: #fff !important;
+  border-radius: 47% !important;
+  min-width: 40px !important;
+  height: 40px !important;
+}
+.headerSearch button svg{
+      font-size: 20px;
+}
+
+/* 🏙️ City List */
+.cityList {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.cityItem {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.cityItem:hover {
+  background: #f0fdfb;
+}
+
+.noCity {
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  color: #999;
+}
+
+/* 🔘 Close Button */
+.closeBtnWrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.closeBtn1 {
+  border-color: #2de1c2 !important;
+  color: #2de1c2 !important;
+  border-radius: 20px !important;
+  padding: 6px 20px !important;
+  text-transform: none !important;
+}

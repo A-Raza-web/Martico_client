@@ -1,0 +1,463 @@
+.profilePage {
+  padding: 36px 0 56px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(45, 225, 194, 0.2), transparent 32%),
+    radial-gradient(circle at 88% 22%, rgba(0, 105, 112, 0.16), transparent 28%),
+    #f5f9fa;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.profileTopAction {
+  display: flex;
+  align-items: center;
+}
+
+.backHomeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #006970;
+  font-weight: 800;
+  border: 1px solid #c9dee2;
+  background: #fff;
+  border-radius: 999px;
+  padding: 9px 14px;
+  transition: all 0.2s ease;
+}
+
+.backHomeBtn:hover {
+  color: #003947;
+  border-color: #006970;
+  background: #ecf7f8;
+}
+
+.profileHero {
+  background: linear-gradient(130deg, #003947 0%, #006970 58%, #23b89f 100%);
+  border-radius: 22px;
+  padding: 28px;
+  color: #fff;
+  box-shadow: 0 14px 32px rgba(0, 47, 61, 0.2);
+}
+
+.profileTopRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatarBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.profileAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.profileAvatar:hover{
+  cursor: pointer;
+}
+
+.avatarUploadOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.profileAvatar:hover .avatarUploadOverlay {
+  opacity: 1;
+}
+.profileAvatarImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarUploadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.avatarUploadBtn:hover {
+  border-color: #2f4d57;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.avatarUploadBtn:focus,
+.avatarUploadBtn:focus-visible {
+  border-color: #2f4d57;
+  outline: 2px solid #2f4d57;
+  outline-offset: 1px;
+}
+
+.avatarInput {
+  display: none;
+}
+
+.profileTag {
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 3px;
+}
+
+.profileHero h2 {
+  margin: 0;
+  font-weight: 800;
+}
+
+.profileSubText {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.profileQuickStats {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 14px;
+}
+
+.profileQuickStats div {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.profileQuickStats span {
+  font-size: 12px;
+  opacity: 0.84;
+}
+
+.profileQuickStats strong {
+  margin-top: 4px;
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+}
+
+.profileCard {
+  background: #fff;
+  border: 1px solid #e7eff1;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 7px 24px rgba(0, 47, 61, 0.08);
+}
+
+.cardTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: #003947;
+}
+
+.cardTitleRow h4 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.infoList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.infoList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2f4d57;
+  font-weight: 600;
+}
+
+.primaryAction {
+  margin-top: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #003947, #006970);
+  color: #fff;
+  font-weight: 700;
+  padding: 11px 16px;
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.actionChip {
+  border: 1px solid #d8e6e9;
+  border-radius: 12px;
+  color: #184954;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.actionChip:hover {
+  border-color: #2de1c2;
+  color: #006970;
+  transform: translateY(-2px);
+}
+
+.ordersCard {
+  padding-top: 20px;
+}
+
+.viewAllLink {
+  color: #006970;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ordersTable {
+  display: grid;
+  gap: 10px;
+}
+
+.orderRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.9fr 0.7fr;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid #e7eff1;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfc 100%);
+  color: #244b56;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(0, 47, 61, 0.06);
+  transition: all 0.2s ease;
+}
+
+.orderRow > div:last-child {
+  text-align: right;
+  justify-self: end;
+}
+
+.orderRow > div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orderRow:hover {
+  transform: translateY(-1px);
+  border-color: #bfe7e1;
+  box-shadow: 0 10px 22px rgba(0, 47, 61, 0.1);
+}
+
+.orderRow div:nth-child(2) {
+  color: #4b6b74;
+  font-weight: 600;
+}
+
+.orderId {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #003947;
+  font-weight: 800;
+}
+
+.statusBadge {
+  text-align: center;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+}
+
+.statusBadge.delivered {
+  background: #d9f8ef;
+  color: #047857;
+}
+
+.statusBadge.shipped {
+  background: #d9eeff;
+  color: #1d4ed8;
+}
+
+.statusBadge.processing {
+  background: #fff3d6;
+  color: #b45309;
+}
+
+.profileDialog .MuiDialog-paper {
+  border-radius: 18px;
+}
+
+.profileFormGrid {
+  padding-top: 6px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.profileFormGrid .MuiTextField-root:last-child {
+  grid-column: 1 / -1;
+}
+
+.profileDialogActions {
+  padding: 0 24px 18px 24px;
+}
+
+.profileDialogActions .dialogBtn {
+  text-transform: none;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 7px 16px;
+}
+
+.profileDialogActions .dialogBtnCancel {
+  color: #006970;
+  border-color: #006970;
+}
+
+.profileDialogActions .dialogBtnCancel:hover {
+  border-color: #003947;
+  background: rgba(0, 105, 112, 0.08);
+}
+
+.profileDialogActions .dialogBtnSave {
+  color: #fff;
+  background: linear-gradient(90deg, #003947, #006970, #2de1c2);
+  box-shadow: none;
+}
+
+.profileDialogActions .dialogBtnSave:hover {
+  background: linear-gradient(90deg, #002a35, #00555a, #27c9ae);
+  box-shadow: 0 8px 20px rgba(0, 105, 112, 0.24);
+}
+
+.profileDialog .MuiFormLabel-root.Mui-focused {
+  color: #006970;
+}
+
+.profileDialog .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #006970;
+}
+
+.profileDialog .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #006970;
+}
+
+.dialogEmpty {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.dialogEmptyIcon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: #006970;
+  background: #e7f6f4;
+  border: 1px solid #bfe7e1;
+}
+
+.dialogEmptyTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #003947;
+}
+
+.dialogEmptySubtitle {
+  font-size: 13px;
+  color: #5d7a82;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+@media (max-width: 991px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .orderRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .profilePage {
+    padding: 22px 0 36px;
+  }
+
+  .profileHero {
+    padding: 20px;
+  }
+
+  .profileQuickStats {
+    grid-template-columns: 1fr;
+  }
+
+  .orderRow {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .profileFormGrid {
+    grid-template-columns: 1fr;
+  }
+}
