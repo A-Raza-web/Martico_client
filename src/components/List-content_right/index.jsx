@@ -17,9 +17,9 @@ import ProductModel from '../ProductModel';
 import { addToMyList, getMyListIds, removeFromMyList } from "../../utils/myList";
 
 const apiProducts = async (categoryId, subCategoryId, searchQuery) => {
-  let url = 'http://localhost:4000/api/products?limit=24';
+  let url = 'martico-server.vercel.app/api/products?limit=24';
   if (searchQuery) {
-    url = `http://localhost:4000/api/search?q=${encodeURIComponent(searchQuery)}`;
+    url = `martico-server.vercel.app/api/search?q=${encodeURIComponent(searchQuery)}`;
   } else if (subCategoryId) {
     url += `&subCategory=${subCategoryId}`;
   } else if (categoryId && categoryId !== 'all') {

@@ -48,7 +48,7 @@ const Reatedproduct = ({ product }) => {
 
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:4000/api/products?limit=10&category=${product.category._id}`);
+        const res = await fetch(`martico-server.vercel.app/api/products?limit=10&category=${product.category._id}`);
         const json = await res.json();
         
         if (json.success && json.data) {

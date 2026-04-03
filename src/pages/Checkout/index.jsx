@@ -98,7 +98,7 @@ const Checkout = () => {
     try {
       // ✅ COD case
       if (payment === "cod") {
-        const res = await fetch("http://localhost:4000/api/order/create-order", {
+        const res = await fetch("martico-server.vercel.app/api/order/create-order", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -121,7 +121,7 @@ const Checkout = () => {
 
       // ✅ Card Payment (Stripe)
       const response = await fetch(
-        "http://localhost:4000/api/payment/checkout",
+        "martico-server.vercel.app/api/payment/checkout",
         {
           method: "POST",
           headers: {

@@ -23,7 +23,7 @@ const Navication = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/categories');
+        const res = await fetch('martico-server.vercel.app/api/categories');
         const json = await res.json();
         setCategories(json.data || json);
       } catch (err) {
@@ -32,7 +32,7 @@ const Navication = () => {
     };
     const fetchSubCategories = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/subcategories');
+        const res = await fetch('martico-server.vercel.app/api/subcategories');
         const json = await res.json();
         setSubCategories(json.data || json);
       } catch (err) {

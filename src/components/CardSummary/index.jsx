@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import "./CardSummary.css"
 
-const CART_API_BASE = "http://localhost:4000/api/cart";
+const CART_API_BASE = "martico-server.vercel.app/api/cart";
 
 const getCartUserId = () => {
   return localStorage.getItem("userId") || localStorage.getItem("guestUserId");

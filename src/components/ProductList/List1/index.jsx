@@ -51,7 +51,7 @@ const List1 = () => {
   const fetchProducts = async (categoryId = null) => {
     try {
       setLoading(true);
-      let url = 'http://localhost:4000/api/products?limit=12';
+      let url = 'martico-server.vercel.app/api/products?limit=12';
       
       if (categoryId) {
         url += `&category=${categoryId}`;
@@ -78,7 +78,7 @@ const List1 = () => {
     
     const fetchCategories = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/categories');
+        const res = await fetch('martico-server.vercel.app/api/categories');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         const list = json.data || json;

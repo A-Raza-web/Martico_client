@@ -104,7 +104,7 @@ const Profile = () => {
         return;
       }
       const res = await axios.put(
-        `http://localhost:4000/api/auth/update-profile/${user._id}`,
+        `martico-server.vercel.app/api/auth/update-profile/${user._id}`,
         { profileImage: base64Image }
       );
 
@@ -172,7 +172,7 @@ const Profile = () => {
     try {
       setIsProfileSaving(true);
       const res = await axios.put(
-        `http://localhost:4000/api/auth/update-profile/${user._id}`,
+        `martico-server.vercel.app/api/auth/update-profile/${user._id}`,
         updatedPayload
       );
 

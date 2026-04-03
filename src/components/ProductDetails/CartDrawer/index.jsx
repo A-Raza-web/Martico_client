@@ -6,7 +6,7 @@ import Pro from "../../../assets/images/pro.jpg";
 import Button from "@mui/material/Button";
 import "./CardDrawer.css";
 
-const CART_API_BASE = "http://localhost:4000/api/cart";
+const CART_API_BASE = "martico-server.vercel.app/api/cart";
 
 const toPrice = (value) => {
   const num = Number(value);

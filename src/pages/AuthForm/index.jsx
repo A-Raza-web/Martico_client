@@ -52,7 +52,7 @@ const AuthForm = () => {
 
     try {
       if (mode === "signin") {
-        const res = await axios.post("http://localhost:4000/api/auth/signin", {
+        const res = await axios.post("martico-server.vercel.app/api/auth/signin", {
           email,
           password,
         });
@@ -71,7 +71,7 @@ const AuthForm = () => {
         }));
         navigate('/');
        }else {
-        const res = await axios.post("http://localhost:4000/api/auth/signup", {
+        const res = await axios.post("martico-server.vercel.app/api/auth/signup", {
           name,
           email,
           password,

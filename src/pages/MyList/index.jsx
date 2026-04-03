@@ -7,7 +7,7 @@ import Tab from "@mui/material/Tab";
 import "./MyList.css";
 import { syncMyListIds, unmarkInMyList } from "../../utils/myList";
 
-const MYLIST_API_BASE = "http://localhost:4000/api/mylist";
+const MYLIST_API_BASE = "martico-server.vercel.app/api/mylist";
 
 const toPrice = (value) => {
   const num = Number(value);
