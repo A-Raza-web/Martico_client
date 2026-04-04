@@ -12,7 +12,7 @@ import { addToMyList, getMyListIds, removeFromMyList } from "../../utils/myList"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const CART_API_BASE = "martico-server.vercel.app/api/cart";
+const CART_API_BASE = "https://martico-server.vercel.app/api/cart";
 
 const getOrCreateCartUserId = () => {
   const loggedInUserId = localStorage.getItem("userId");

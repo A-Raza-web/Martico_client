@@ -5,7 +5,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { IoBagCheckOutline } from "react-icons/io5";
 import './card.css';
 
-const CART_API_BASE = 'martico-server.vercel.app/api/cart';
+const CART_API_BASE = 'https://martico-server.vercel.app/api/cart';
 
 const toPrice = (value) => {
   const num = Number(value);

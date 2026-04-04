@@ -35,7 +35,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`martico-server.vercel.app/api/products/${id}`);
+        const res = await fetch(`https://martico-server.vercel.app/api/products/${id}`);
         const json = await res.json();
         
         if (json.success) {

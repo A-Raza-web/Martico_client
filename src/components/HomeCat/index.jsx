@@ -34,7 +34,7 @@ const HomeCat = () => {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const response = await fetch('martico-server.vercel.app/api/categories');
+        const response = await fetch('https://martico-server.vercel.app/api/categories');
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

@@ -12,7 +12,7 @@ const ReviewSection = ({ product }) => {
   const [avgRating, setAvgRating] = useState(product?.rating || 0);
   const [reviewCount, setReviewCount] = useState(0);
 
-  const API_BASE = "martico-server.vercel.app/api/reviews";
+  const API_BASE = "https://martico-server.vercel.app/api/reviews";
   const storedUser = (() => {
     try {
       const raw = localStorage.getItem("user");

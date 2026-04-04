@@ -14,7 +14,7 @@ const Success = () => {
       const userId = localStorage.getItem("userId") || localStorage.getItem("guestUserId");
 
       try {
-        const res = await fetch("martico-server.vercel.app/api/payment/confirm", {
+        const res = await fetch("https://martico-server.vercel.app/api/payment/confirm", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sessionId, userId })

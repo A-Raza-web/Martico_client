@@ -75,7 +75,7 @@ const HomeBanner = () => {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const res = await fetch("martico-server.vercel.app/api/banners");
+        const res = await fetch("https://martico-server.vercel.app/api/banners");
         const data = await res.json();
         if (data?.success && Array.isArray(data.data)) {
           setBanners(data.data);

@@ -48,7 +48,7 @@ const Header = ()=>{
         return;
       }
 
-      const res = await fetch(`martico-server.vercel.app/api/cart/user/${userId}`);
+      const res = await fetch(`https://martico-server.vercel.app/api/cart/user/${userId}`);
       const data = await res.json();
 
       if (data.success) {

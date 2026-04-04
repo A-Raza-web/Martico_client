@@ -44,7 +44,7 @@ const List2 = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const res = await fetch('martico-server.vercel.app/api/products?limit=24');
+        const res = await fetch('https://martico-server.vercel.app/api/products?limit=24');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         const list = json.data || json;

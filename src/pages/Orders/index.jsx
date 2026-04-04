@@ -24,7 +24,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import "./Orders.css";
 
-const ORDERS_API_BASE = "martico-server.vercel.app/api/orders";
+const ORDERS_API_BASE = "https://martico-server.vercel.app/api/orders";
 
 // Mock orders for demo (will be replaced with API data)
 const mockOrders = [

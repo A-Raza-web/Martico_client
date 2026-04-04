@@ -3,23 +3,21 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
-
 import { FaAngleDown, FaStar, FaRegStar } from "react-icons/fa6";
 import { BiGridSmall, BiSolidGrid } from "react-icons/bi";
 import { TfiLayoutGrid4Alt } from "react-icons/tfi";
 import { IoIosMenu } from "react-icons/io";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { RxExitFullScreen } from "react-icons/rx";
-
 import pro from "../../assets/images/pro.jpg";
 import "./content_right.css";
 import ProductModel from '../ProductModel';
 import { addToMyList, getMyListIds, removeFromMyList } from "../../utils/myList";
 
 const apiProducts = async (categoryId, subCategoryId, searchQuery) => {
-  let url = 'martico-server.vercel.app/api/products?limit=24';
+  let url = 'https://martico-server.vercel.app/api/products?limit=24';
   if (searchQuery) {
-    url = `martico-server.vercel.app/api/search?q=${encodeURIComponent(searchQuery)}`;
+    url = `https://martico-server.vercel.app/api/search?q=${encodeURIComponent(searchQuery)}`;
   } else if (subCategoryId) {
     url += `&subCategory=${subCategoryId}`;
   } else if (categoryId && categoryId !== 'all') {

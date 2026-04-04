@@ -35,7 +35,7 @@ const SideBar =  ({ onPriceFilter, onBrandFilter }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch('martico-server.vercel.app/api/categories');
+        const res = await fetch('https://martico-server.vercel.app/api/categories');
         const json = await res.json();
         setCategories(json.data || json);
       } catch (e) {}
@@ -43,7 +43,7 @@ const SideBar =  ({ onPriceFilter, onBrandFilter }) => {
     
     const fetchBrands = async () => {
       try {
-        const res = await fetch('martico-server.vercel.app/api/products/brands');
+        const res = await fetch('https://martico-server.vercel.app/api/products/brands');
         const json = await res.json();
         if (json.success && Array.isArray(json.data)) {
           setBrands(json.data);
