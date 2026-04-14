@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ShieldCheck, Truck, Wallet, CreditCard } from "lucide-react";
 import  CardSummary from "../../components/CardSummary";
 import "./Checkout.css";
 import { toast } from "react-toastify";
+
+const API_BASE = import.meta.env.VITE_API_URL || "https://martico-server.vercel.app/api";
 
 const Checkout = () => {
   const [delivery, setDelivery] = useState("standard");
@@ -11,6 +13,13 @@ const Checkout = () => {
   const [paymentError, setPaymentError] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
+
+  const getToken = () => localStorage.getItem("token");
+  const getUserId = () => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    return user._id || localStorage.getItem("userId") || localStorage.getItem("guestUserId");
+  };
 
   const handleFormInput = (event) => {
     const target = event.target;
@@ -18,9 +27,13 @@ const Checkout = () => {
       target.classList.remove("fieldError");
     }
   };
-  const getCartUserId = () => {
-  return localStorage.getItem("userId") || localStorage.getItem("guestUserId");
- };
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    if (!user._id && !localStorage.getItem("userId") && !localStorage.getItem("guestUserId")) {
+      navigate("/auth");
+    }
+  }, [navigate]);
 
   const handlePay = async () => {
     const form = document.querySelector(".checkoutForm");
@@ -58,7 +71,7 @@ const Checkout = () => {
     };
 
     const orderData = {
-      userId: getCartUserId(),
+      userId: getUserId(),
       contact: {
         email: getValue("Email"),
         phone: getValue("Phone"),
@@ -74,9 +87,9 @@ const Checkout = () => {
         zipCode: getValue("Zip"),
         country: getValue("Country"),
       },
-        deliveryMethod: delivery,
-        paymentMethod: payment,
-        items: cartItems.map((item) => ({
+      deliveryMethod: delivery,
+      paymentMethod: payment,
+      items: cartItems.map((item) => ({
         productId: item.productId || item._id,
         name: item.name,
         image: item.image,
@@ -84,25 +97,22 @@ const Checkout = () => {
         quantity: item.quantity || 1,
       })),
 
-      subtotal: cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0),
-      deliveryFee: delivery === "express" ? 9.99 : 0,
-      totalAmount:
-        cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) +
-        (delivery === "express" ? 9.99 : 0),
-
       orderNotes: getValue("Order Notes"),
     };
 
     setIsProcessing(true);
 
     try {
-      // ✅ COD case
+      const token = getToken();
+      const headers = {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+      };
+
       if (payment === "cod") {
-        const res = await fetch("https://martico-server.vercel.app/api/order/create-order", {
+        const res = await fetch(`${API_BASE}/orders`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers,
           body: JSON.stringify(orderData),
         });
 
@@ -110,7 +120,9 @@ const Checkout = () => {
 
         if (data.success) {
           toast.success("Order placed successfully!");
-          setCartItems([]); // cart empty
+          setCartItems([]);
+          window.dispatchEvent(new Event("cartUpdated"));
+          navigate("/orders");
         } else {
           toast.error(data.message || "Order failed");
         }
@@ -119,15 +131,12 @@ const Checkout = () => {
         return;
       }
 
-      // ✅ Card Payment (Stripe)
       const response = await fetch(
-        "https://martico-server.vercel.app/api/payment/checkout",
+        `${API_BASE}/payment/checkout`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(orderData), // 👈 full data send
+          headers,
+          body: JSON.stringify(orderData),
         }
       );
 

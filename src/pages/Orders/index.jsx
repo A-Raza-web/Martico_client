@@ -24,69 +24,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import "./Orders.css";
 
-const ORDERS_API_BASE = "https://martico-server.vercel.app/api/orders";
-
-// Mock orders for demo (will be replaced with API data)
-const mockOrders = [
-  {
-    _id: "ord-001",
-    orderId: "ORD-1042",
-    createdAt: "2026-03-15T10:30:00Z",
-    status: "delivered",
-    totalAmount: 128.0,
-    items: [
-      { productId: { name: "Premium Wireless Headphones", image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200" } },
-      { productId: { name: "USB-C Charging Cable", image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=200" } }
-    ],
-    shippingAddress: { city: "New York", country: "USA" }
-  },
-  {
-    _id: "ord-002",
-    orderId: "ORD-1043",
-    createdAt: "2026-03-10T14:20:00Z",
-    status: "shipped",
-    totalAmount: 79.99,
-    items: [
-      { productId: { name: "Smart Watch Pro", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200" } }
-    ],
-    shippingAddress: { city: "Los Angeles", country: "USA" }
-  },
-  {
-    _id: "ord-003",
-    orderId: "ORD-1044",
-    createdAt: "2026-03-08T09:15:00Z",
-    status: "processing",
-    totalAmount: 249.5,
-    items: [
-      { productId: { name: "Laptop Stand", image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=200" } },
-      { productId: { name: "Wireless Mouse", image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=200" } },
-      { productId: { name: "Keyboard Cover", image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=200" } }
-    ],
-    shippingAddress: { city: "Chicago", country: "USA" }
-  },
-  {
-    _id: "ord-004",
-    orderId: "ORD-1045",
-    createdAt: "2026-03-05T16:45:00Z",
-    status: "pending",
-    totalAmount: 59.99,
-    items: [
-      { productId: { name: "Phone Case Premium", image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=200" } }
-    ],
-    shippingAddress: { city: "Miami", country: "USA" }
-  },
-  {
-    _id: "ord-005",
-    orderId: "ORD-1046",
-    createdAt: "2026-02-28T11:00:00Z",
-    status: "cancelled",
-    totalAmount: 189.0,
-    items: [
-      { productId: { name: "Bluetooth Speaker", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200" } }
-    ],
-    shippingAddress: { city: "Seattle", country: "USA" }
-  }
-];
+const API_BASE = import.meta.env.VITE_API_URL || "https://martico-server.vercel.app/api";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -102,6 +40,7 @@ const getStatusIcon = (status) => {
     case "pending":
       return <Clock size={14} />;
     case "processing":
+    case "confirmed":
       return <Package size={14} />;
     case "shipped":
       return <Truck size={14} />;
@@ -119,12 +58,30 @@ const getStatusLabel = (status) => {
   const labels = {
     pending: "Pending",
     processing: "Processing",
+    confirmed: "Confirmed",
     shipped: "Shipped",
     delivered: "Delivered",
     completed: "Completed",
     cancelled: "Cancelled"
   };
   return labels[status] || status;
+};
+
+const getItemDetails = (item) => {
+  if (item.productId && typeof item.productId === 'object') {
+    return {
+      name: item.productId.name || "Product",
+      image: item.productId.image || "https://via.placeholder.com/56",
+    };
+  }
+  return {
+    name: item.name || "Product",
+    image: item.image || "https://via.placeholder.com/56",
+  };
+};
+
+const getOrderStatus = (order) => {
+  return order.fulfillmentStatus || order.status || "pending";
 };
 
 const Orders = () => {
@@ -136,15 +93,18 @@ const Orders = () => {
   const [activeMenuOrder, setActiveMenuOrder] = useState(null);
   const [detailsOrder, setDetailsOrder] = useState(null);
 
-  const userId = localStorage.getItem("userId") || localStorage.getItem("guestUserId");
-
   const fetchOrders = async () => {
     try {
       setLoading(true);
       setError("");
 
-      // Try to fetch from API
-      const res = await fetch(`${ORDERS_API_BASE}/user/${userId}`);
+      const token = localStorage.getItem("token");
+      const res = await fetch(`${API_BASE}/orders`, {
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+      });
       
       if (res.ok) {
         const json = await res.json();
@@ -154,11 +114,12 @@ const Orders = () => {
         }
       }
       
-      // Fallback to mock data for demo
-      setOrders(mockOrders);
+      setError("Failed to load orders");
+      setOrders([]);
     } catch (err) {
-      console.log("Using mock orders data");
-      setOrders(mockOrders);
+      console.error("Error fetching orders:", err);
+      setError("Failed to load orders");
+      setOrders([]);
     } finally {
       setLoading(false);
     }
@@ -166,29 +127,30 @@ const Orders = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [userId]);
+  }, []);
 
   const stats = useMemo(() => {
     return {
       total: orders.length,
-      pending: orders.filter(o => o.status === "pending").length,
-      processing: orders.filter(o => o.status === "processing" || o.status === "shipped").length,
-      completed: orders.filter(o => o.status === "delivered" || o.status === "completed").length
+      pending: orders.filter(o => getOrderStatus(o) === "pending").length,
+      processing: orders.filter(o => ["processing", "confirmed", "shipped"].includes(getOrderStatus(o))).length,
+      completed: orders.filter(o => ["delivered", "completed"].includes(getOrderStatus(o))).length
     };
   }, [orders]);
 
   const filterTabs = ["All Orders", "Pending", "Processing", "Completed", "Cancelled"];
   
   const getFilteredOrders = () => {
+    const status = getOrderStatus;
     switch (tabValue) {
       case 1:
-        return orders.filter(o => o.status === "pending");
+        return orders.filter(o => status(o) === "pending");
       case 2:
-        return orders.filter(o => ["processing", "shipped"].includes(o.status));
+        return orders.filter(o => ["processing", "confirmed", "shipped"].includes(status(o)));
       case 3:
-        return orders.filter(o => ["delivered", "completed"].includes(o.status));
+        return orders.filter(o => ["delivered", "completed"].includes(status(o)));
       case 4:
-        return orders.filter(o => o.status === "cancelled");
+        return orders.filter(o => status(o) === "cancelled");
       default:
         return orders;
     }
@@ -222,7 +184,6 @@ const Orders = () => {
 
   const handleDeleteOrder = () => {
     if (!activeMenuOrder) return;
-
     const deletingId = activeMenuOrder._id || activeMenuOrder.orderId;
     setOrders((prevOrders) =>
       prevOrders.filter((order) => (order._id || order.orderId) !== deletingId)
@@ -233,7 +194,6 @@ const Orders = () => {
   return (
     <section className="ordersPage">
       <div className="ordersContainer">
-        {/* Top Actions */}
         <div className="ordersTopActions">
           <Link to="/" className="ordersBackBtn">
             <ArrowLeft size={18} />
@@ -241,7 +201,6 @@ const Orders = () => {
           </Link>
         </div>
 
-        {/* Hero Section */}
         <div className="ordersHero">
           <div className="ordersHeroContent">
             <p className="ordersTag">Your Shopping</p>
@@ -264,7 +223,6 @@ const Orders = () => {
           </div>
         </div>
 
-        {/* Summary Cards */}
         <div className="ordersSummary">
           <div className="summaryOrderCard">
             <div>
@@ -295,7 +253,6 @@ const Orders = () => {
           </div>
         </div>
 
-        {/* Filter Tabs */}
         <Box className="ordersFilterTabs">
           <Tabs
             value={tabValue}
@@ -310,11 +267,21 @@ const Orders = () => {
           </Tabs>
         </Box>
 
-        {/* Orders List - Row Style */}
         {loading ? (
           <div className="ordersLoading">
             <div className="ordersLoadingSpinner"></div>
             <p>Loading your orders...</p>
+          </div>
+        ) : error ? (
+          <div className="ordersEmpty">
+            <div className="ordersEmptyIcon">
+              <XCircle size={36} />
+            </div>
+            <h3>Error Loading Orders</h3>
+            <p>{error}</p>
+            <button className="ordersBrowseBtn" onClick={fetchOrders}>
+              Retry
+            </button>
           </div>
         ) : filteredOrders.length === 0 ? (
           <div className="ordersEmpty">
@@ -347,11 +314,12 @@ const Orders = () => {
 
             <div className="ordersList">
               {filteredOrders.map((order) => {
-                const orderId = order.orderId || order._id;
+                const orderId = order.orderNumber || order.orderId || order._id;
                 const items = order.items || [];
                 const previewItems = items.slice(0, 3);
                 const remainingCount = items.length - previewItems.length;
-                const firstItemName = items[0]?.productId?.name || "Order items";
+                const firstItem = items[0] || {};
+                const firstItemDetails = getItemDetails(firstItem);
                 const shippingLocation = [order.shippingAddress?.city, order.shippingAddress?.country]
                   .filter(Boolean)
                   .join(", ");
@@ -368,19 +336,22 @@ const Orders = () => {
 
                     <div className="orderProductCell" data-label="Items">
                       <div className="orderItemsStack">
-                        {previewItems.map((item, idx) => (
-                          <img
-                            key={idx}
-                            src={item.productId?.image || "https://via.placeholder.com/56"}
-                            alt={item.productId?.name || "Product"}
-                            className="orderItemThumb"
-                            title={item.productId?.name}
-                          />
-                        ))}
+                        {previewItems.map((item, idx) => {
+                          const itemDetails = getItemDetails(item);
+                          return (
+                            <img
+                              key={idx}
+                              src={itemDetails.image}
+                              alt={itemDetails.name}
+                              className="orderItemThumb"
+                              title={itemDetails.name}
+                            />
+                          );
+                        })}
                         {remainingCount > 0 && <div className="orderItemCount">+{remainingCount}</div>}
                       </div>
                       <div className="orderProductMeta">
-                        <p>{firstItemName}</p>
+                        <p>{firstItemDetails.name}</p>
                         <span>
                           <ShoppingBag size={13} />
                           {items.length} {items.length === 1 ? "item" : "items"}
@@ -401,9 +372,9 @@ const Orders = () => {
                     </div>
 
                     <div className="orderRowStatus" data-label="Status">
-                      <span className={`orderStatusBadge ${order.status}`}>
-                        {getStatusIcon(order.status)}
-                        {getStatusLabel(order.status)}
+                      <span className={`orderStatusBadge ${getOrderStatus(order)}`}>
+                        {getStatusIcon(getOrderStatus(order))}
+                        {getStatusLabel(getOrderStatus(order))}
                       </span>
                     </div>
 
@@ -457,24 +428,25 @@ const Orders = () => {
           maxWidth="sm"
         >
           <DialogTitle>
-            product Details {detailsOrder ? `- ${detailsOrder.orderId || detailsOrder._id}` : ""}
+            Order Details {detailsOrder ? `- ${detailsOrder.orderNumber || detailsOrder._id}` : ""}
           </DialogTitle>
           <DialogContent dividers>
             <div className="orderDetailsList">
               {(detailsOrder?.items || []).map((item, idx) => {
-                const product = item.productId || {};
+                const itemDetails = getItemDetails(item);
                 const quantity = item.quantity || item.qty || 1;
 
                 return (
-                  <article className="orderDetailsItem" key={`${product._id || product.name || "item"}-${idx}`}>
+                  <article className="orderDetailsItem" key={`${item.productId || idx}`}>
                     <img
-                      src={product.image || "https://via.placeholder.com/120"}
-                      alt={product.name || "Product"}
+                      src={itemDetails.image}
+                      alt={itemDetails.name}
                       className="orderDetailsImage"
                     />
                     <div className="orderDetailsInfo">
-                      <h4>{product.name || "Unnamed Product"}</h4>
+                      <h4>{itemDetails.name}</h4>
                       <p>Quantity: {quantity}</p>
+                      <p>Price: ${(item.price || 0).toFixed(2)}</p>
                     </div>
                   </article>
                 );
