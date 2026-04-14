@@ -98,20 +98,21 @@ const CardSummary = ({ onPay, paymentMethod,isProcessing,setCartItemsInParent })
           const itemPrice = toPrice(item.price);
           const itemSubtotal = toPrice(item.subtotal || (itemPrice * itemQty));
           return (
-            <div className="order-summary">
-            {order.items.map((item, index) => (
-            <div key={index} className="order-item-row" style={{ display: 'flex', marginBottom: '10px' }}>
-            <img 
-            src={item.image} 
-            alt={item.name} 
-            style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px' }} 
-            />
-            <div className="item-details" style={{ marginLeft: '15px' }}>
-            <h5>{item.name}</h5>
-            <p>Qty: {item.quantity} | Price: ${item.price}</p>
-            </div>
-            </div>
-            ))}
+            <div className="productRow" key={itemId}>
+              <img
+                src={item.image || "https://via.placeholder.com/60x80"}
+                alt={item.name || "product"}
+                className="productImg"
+              />
+
+              <div className="productInfo">
+                <h4>{truncateWords(item.name || "Product")}</h4>
+                <div className="priceRow">
+                  <span className="price">{formatCurrency(itemPrice)}</span>
+                  <span className="qtyText">Qty: {itemQty}</span>
+                </div>
+                <div className="subTotalText">Subtotal: {formatCurrency(itemSubtotal)}</div>
+              </div>
             </div>
           );
         })}
